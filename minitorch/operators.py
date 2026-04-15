@@ -32,7 +32,6 @@ from typing import Callable, Iterable
 # $f(x) = |x - y| < 1e-2$
 
 
-# TODO: Implement for Task 0.1.
 def mul(x: float, y: float) -> float:
     """Multiply two numbers."""
     return x * y
@@ -129,4 +128,43 @@ def relu_back(x: float, y: float) -> float:
 # - prod: take the product of lists
 
 
-# TODO: Implement for Task 0.3.
+def map(f: Callable[[float], float], ls: Iterable[float]) -> Iterable[float]:
+    """Apply a unary function to each element."""
+    return [f(x) for x in ls]
+
+
+def zipWith(
+    f: Callable[[float, float], float], ls1: Iterable[float], ls2: Iterable[float]
+) -> Iterable[float]:
+    """Combine two iterables elementwise with a binary function."""
+    return [f(x, y) for x, y in zip(ls1, ls2)]
+
+
+def reduce(
+    f: Callable[[float, float], float], ls: Iterable[float], initial: float
+) -> float:
+    """Fold an iterable from left to right."""
+    result = initial
+    for x in ls:
+        result = f(result, x)
+    return result
+
+
+def negList(ls: Iterable[float]) -> Iterable[float]:
+    """Return a list with all elements negated."""
+    return map(neg, ls)
+
+
+def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
+    """Add two iterables elementwise."""
+    return zipWith(add, ls1, ls2)
+
+
+def sum(ls: Iterable[float]) -> float:
+    """Return the sum of all elements."""
+    return reduce(add, ls, 0.0)
+
+
+def prod(ls: Iterable[float]) -> float:
+    """Return the product of all elements."""
+    return reduce(mul, ls, 1.0)
