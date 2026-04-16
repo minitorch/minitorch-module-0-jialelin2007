@@ -52,14 +52,14 @@ def neg(x: float) -> float:
     return -x
 
 
-def lt(x: float, y: float) -> bool:
+def lt(x: float, y: float) -> float:
     """Check if x is less than y."""
-    return x < y
+    return float(x < y)
 
 
-def eq(x: float, y: float) -> bool:
+def eq(x: float, y: float) -> float:
     """Check if x is equal to y."""
-    return x == y
+    return float(x == y)
 
 
 def max(x: float, y: float) -> float:
@@ -67,9 +67,9 @@ def max(x: float, y: float) -> float:
     return x if x > y else y
 
 
-def is_close(x: float, y: float) -> bool:
+def is_close(x: float, y: float) -> float:
     """Check whether two numbers are close within tolerance."""
-    return abs(x - y) < 1e-2
+    return float(abs(x - y) < 1e-2)
 
 
 def sigmoid(x: float) -> float:
@@ -79,7 +79,7 @@ def sigmoid(x: float) -> float:
 
 def relu(x: float) -> float:
     """Apply rectified linear unit."""
-    return max(0, x)
+    return max(0.0, x)
 
 
 def log(x: float) -> float:
@@ -109,7 +109,7 @@ def inv_back(x: float, y: float) -> float:
 
 def relu_back(x: float, y: float) -> float:
     """Backprop for relu: pass upstream only when x > 0."""
-    return y * (x > 0)
+    return float(y * (x > 0))
 
 
 # ## Task 0.3
